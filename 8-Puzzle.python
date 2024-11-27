@@ -1,0 +1,111 @@
+from collections import deque
+
+class Puzzle:
+    def __init__(self, initial_state, goal_state):
+        self.initial_state = initial_state
+        self.goal_state = goal_state
+        self.rows, self.cols = 3, 3  # 3x3 grid
+
+    def find_blank(self, state):
+        """Find the position of the blank (0) in the state."""
+        for i, row in enumerate(state):
+            for j, val in enumerate(row):
+                if val == 0:
+                    return i, j
+
+    def is_valid_move(self, x, y):
+        """Check if moving to position (x, y) is valid."""
+        return 0 <= x < self.rows and 0 <= y < self.cols
+
+    def generate_moves(self, state):
+        """Generate all possible moves from the current state."""
+        x, y = self.find_blank(state)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Up, Down, Left, Right
+        moves = []
+
+        for dx, dy in directions:
+            new_x, new_y = x + dx, y + dy
+            if self.is_valid_move(new_x, new_y):
+                # Create a new state by swapping blank with the target position
+                new_state = [row[:] for row in state]
+                new_state[x][y], new_state[new_x][new_y] = new_state[new_x][new_y], new_state[x][y]
+                moves.append(new_state)
+
+        return moves
+
+    def bfs(self):
+        """Solve the puzzle using Breadth-First Search."""
+        visited = set()
+        queue = deque([(self.initial_state, [])])  # State and path to reach it
+
+        while queue:
+            current_state, path = queue.popleft()
+            state_tuple = tuple(tuple(row) for row in current_state)
+
+            if state_tuple in visited:
+                continue
+
+            visited.add(state_tuple)
+
+            if current_state == self.goal_state:
+                return path + [current_state]
+
+            for move in self.generate_moves(current_state):
+                queue.append((move, path + [current_state]))
+
+        return None
+
+    def dfs(self, depth_limit=50):
+        """Solve the puzzle using Depth-First Search with a depth limit."""
+        visited = set()
+        stack = [(self.initial_state, [])]  # State and path to reach it
+
+        while stack:
+            current_state, path = stack.pop()
+            state_tuple = tuple(tuple(row) for row in current_state)
+
+            if state_tuple in visited:
+                continue
+
+            visited.add(state_tuple)
+
+            if current_state == self.goal_state:
+                return path + [current_state]
+
+            if len(path) >= depth_limit:
+                continue
+
+            for move in self.generate_moves(current_state):
+                stack.append((move, path + [current_state]))
+
+        return None
+
+
+# Example Usage
+initial_state = [
+    [1, 2, 3],
+    [4, 0, 5],
+    [6, 7, 8]
+]
+
+goal_state = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 0]
+]
+
+puzzle = Puzzle(initial_state, goal_state)
+
+print("Solving with BFS...")
+bfs_solution = puzzle.bfs()
+for step in bfs_solution:
+    for row in step:
+        print(row)
+    print()
+
+print("Solving with DFS...")
+dfs_solution = puzzle.dfs()
+for step in dfs_solution:
+    for row in step:
+        print(row)
+    print()
