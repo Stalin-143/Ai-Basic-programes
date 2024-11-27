@@ -3,7 +3,7 @@
 This repository contains a collection of basic Artificial Intelligence (AI) and Machine Learning (ML) codes and implementations. The codes range from simple algorithms to more advanced models, demonstrating the key concepts in AI and ML, such as regression, classification, clustering, deep learning, and reinforcement learning.
 
 ## Contents
-```
+
 - **Supervised Learning**
   - Linear Regression
   - Logistic Regression
@@ -21,11 +21,11 @@ This repository contains a collection of basic Artificial Intelligence (AI) and 
   - Feature Scaling
   - Encoding Categorical Data
   - Handling Missing Data
-```
+
 ## Requirements
 
 Before you start, ensure you have the following libraries installed:
-```
+
 - Python (>= 3.x)
 - numpy
 - pandas
@@ -35,7 +35,7 @@ Before you start, ensure you have the following libraries installed:
 - tensorflow (for deep learning models)
 - keras (for deep learning models)
 - jupyter (optional, for running Jupyter notebooks)
-```
+
 You can install the dependencies using pip:
 ```
 ```
