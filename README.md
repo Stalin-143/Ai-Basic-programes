@@ -38,11 +38,13 @@ Before you start, ensure you have the following libraries installed:
 ```
 You can install the dependencies using pip:
 ```
-```bash
+```
+```
 pip install -r requirements.txt
 ```
 ```
- ```requirements.txt
+ ```
+```
 text
 Copy code
 numpy
