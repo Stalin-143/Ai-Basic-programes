@@ -1,0 +1,17 @@
+ Example Interaction
+
+Hi, I'm ChatBot! Type 'quit' to exit.
+You: hi
+ChatBot: Hello! How can I assist you today?
+
+You: what is your name?
+ChatBot: I am a chatbot created to help you!
+
+You: how are you?
+ChatBot: I'm just a bot, but I'm here to help!
+
+You: can you help me with programming?
+ChatBot: Sure! I can help you with programming. Can you provide more details?
+
+You: goodbye
+ChatBot: Goodbye! Have a great day!
