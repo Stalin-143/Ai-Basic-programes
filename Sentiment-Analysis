@@ -1,0 +1,27 @@
+from textblob import TextBlob
+
+def analyze_sentiment():
+    print("Sentiment Analysis Program")
+    print("Type 'exit' to stop the program.")
+    
+    while True:
+        # Input from the user
+        text = input("\nEnter a sentence: ")
+        if text.lower() == "exit":
+            print("Goodbye!")
+            break
+        
+        # Analyze sentiment
+        blob = TextBlob(text)
+        sentiment = blob.sentiment.polarity
+        
+        # Determine sentiment category
+        if sentiment > 0:
+            print("Sentiment: Positive 😊")
+        elif sentiment < 0:
+            print("Sentiment: Negative 😞")
+        else:
+            print("Sentiment: Neutral 😐")
+
+# Run the program
+analyze_sentiment()
