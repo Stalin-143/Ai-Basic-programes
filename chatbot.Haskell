@@ -1,0 +1,48 @@
+module ChatBot where
+
+import Data.Char (toLower)
+import Control.Monad (forever)
+
+-- | A simple chatbot function
+chatBot :: IO ()
+chatBot = do
+    putStrLn "Hello! I'm your Haskell chatbot. Type 'bye' to exit."
+    forever $ do
+        putStr "You: "
+        userInput <- getLine
+        if map toLower userInput == "bye"
+            then do
+                putStrLn "ChatBot: Goodbye! Have a great day!"
+                return ()
+            else
+                putStrLn $ "ChatBot: " ++ respond userInput
+
+-- | Generate a response based on user input
+respond :: String -> String
+respond input
+    | any (`elem` greetings) (words lowerInput) = "Hi there! How can I help you?"
+    | "how are you" `isInfixOf` lowerInput     = "I'm just a bunch of code, but I'm here to help you!"
+    | "help" `isInfixOf` lowerInput            = "Sure! What do you need help with?"
+    | otherwise                                = "I'm not sure I understand that. Can you elaborate?"
+  where
+    lowerInput = map toLower input
+    greetings = ["hello", "hi", "hey", "greetings"]
+
+-- Helper function to check if a string contains a substring
+isInfixOf :: String -> String -> Bool
+isInfixOf sub str = any (sub `isPrefixOf`) (tails str)
+
+-- Helper function to check if a string starts with a prefix
+isPrefixOf :: String -> String -> Bool
+isPrefixOf [] _ = True
+isPrefixOf _ [] = False
+isPrefixOf (x:xs) (y:ys) = x == y && isPrefixOf xs ys
+
+-- Helper function to generate all suffixes of a string
+tails :: [a] -> [[a]]
+tails [] = [[]]
+tails x@(_:xs) = x : tails xs
+
+-- To run the chatbot, call `chatBot` in the main function
+main :: IO ()
+main = chatBot
