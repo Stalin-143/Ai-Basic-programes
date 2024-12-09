@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Haskell Manual Script
+# This script provides a simple interactive manual for Haskell.
+
+function show_menu() {
+    echo "Welcome to the Haskell Manual"
+    echo "Select an option to learn about Haskell:"
+    echo "1. What is Haskell?"
+    echo "2. Basic Syntax"
+    echo "3. Common Functions"
+    echo "4. How to Run Haskell Code"
+    echo "5. Exit"
+}
+
+function what_is_haskell() {
+    echo -e "\nHaskell is a purely functional programming language with strong static typing."
+    echo "It is known for its expressiveness and high-level abstractions."
+    echo "Haskell is widely used for academic research, data processing, and building scalable applications."
+}
+
+function basic_syntax() {
+    echo -e "\nHaskell Basic Syntax:"
+    echo "- Functions are defined using =."
+    echo "  Example: add x y = x + y"
+    echo "- Lists are denoted using square brackets []."
+    echo "  Example: [1, 2, 3, 4]"
+    echo "- Indentation is significant in Haskell to denote code blocks."
+}
+
+function common_functions() {
+    echo -e "\nCommon Functions in Haskell:"
+    echo "- map: Applies a function to all elements of a list."
+    echo "  Example: map (+1) [1, 2, 3] -> [2, 3, 4]"
+    echo "- filter: Filters elements of a list based on a predicate."
+    echo "  Example: filter (>2) [1, 2, 3, 4] -> [3, 4]"
+    echo "- foldl and foldr: Reduce a list to a single value."
+    echo "  Example: foldl (+) 0 [1, 2, 3] -> 6"
+}
+
+function run_haskell_code() {
+    echo -e "\nHow to Run Haskell Code:"
+    echo "1. Install GHC (Glasgow Haskell Compiler) or GHCup."
+    echo "2. Create a Haskell file with the .hs extension."
+    echo "3. Compile the file using 'ghc filename.hs' or run directly using 'runghc filename.hs'."
+    echo "4. Use the GHCi interactive environment for experimentation by typing 'ghci'."
+}
+
+while true; do
+    show_menu
+    read -p "Enter your choice [1-5]: " choice
+    case $choice in
+        1)
+            what_is_haskell
+            ;;
+        2)
+            basic_syntax
+            ;;
+        3)
+            common_functions
+            ;;
+        4)
+            run_haskell_code
+            ;;
+        5)
+            echo "Goodbye!"
+            exit 0
+            ;;
+        *)
+            echo "Invalid choice, please try again."
+            ;;
+    esac
+    echo -e "\nPress Enter to return to the menu."
+    read
+done
