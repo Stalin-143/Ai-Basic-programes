@@ -14,4 +14,4 @@ You: can you help me with programming?
 ChatBot: Sure! I can help you with programming. Can you provide more details?
 
 You: goodbye
-ChatBot: Goodbye! Have a great day!
+ChatBot: Goodbye! Have a great day
